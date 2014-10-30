@@ -312,28 +312,28 @@ a:hover{
 	</div>
 	
 	<nav class="sub-nav bd">
-		<a href="##" class="sub-nav-item sub-nav-active">主题1</a>
-		<a href="##" class="sub-nav-item">主题2</a>
-		<a href="##" class="sub-nav-item">主题3</a>
-		<a href="##" class="sub-nav-item">主题4</a>
-		<a href="##" class="sub-nav-item">主题5</a>
+	 {foreach $themes as $theme}
+		<a href="##" class="sub-nav-item  {if $theme.id ==1}sub-nav-active{/if}" data-target="{$theme.id}" >{$theme.name}</a>
+		
+	{/foreach}	
 	</nav>
-
-	<div class="tpl-list-wrap bd">
-		<h3>蒙版1</h3>
+	{foreach $images as $themeId => $theme}
+	<div class="tpl-list-wrap bd" data-target="{$themeId}" {if $themeId == 1}style="display: block;"{else}style="display: none;"{/if}>
+		{foreach $theme as $templateId => $template}
+		<h3>{$templates[$templateId]['name']}</h3>
 		<div class="tpl-list-cont">
 			<div class="first-view gclearfix">
 				<div class="tpl">
 					<a href="##" target="_blank" class="img-wrap">
-						<img src="http://img.ui.cn/data/file/9/7/1/120179.png" width="320" height="320">
+						<img src="../Public/img/template/{$templates[$templateId]['logo']}" width="320" height="320">
 					</a>
-					<p class="tpl-des">我们特别好特别好</p>
+					<p class="tpl-des">{$templates[$templateId]['name']}</p>
 				</div>
 				<ul class="photo-list">
-				 {foreach $images as $image}
+				 {foreach $template as $image}
 					<li class="photo-item">
 						<a href="###" target="_blank">
-							<img src="./Public/img/uploads/{$image.image_url}" width="164" height="164">
+							<img src="../Public/img/uploads/{$image.image_url}" width="164" height="164">
 							<span class="tit">{$image.image_desc}</span>
 							<span class="cover-all"></span>	
 						</a>
@@ -345,7 +345,7 @@ a:hover{
 			 	{foreach $images as $image}
 				<li class="photo-item">
 					<a href="###" target="_blank">
-						<img src="./Public/img/uploads/{$image.image_url}" width="164" height="164">
+						<img src="../Public/img/uploads/{$image.image_url}" width="164" height="164">
 						<span class="tit">{$image.image_desc}</span>
 						<span class="cover-all"></span>	
 					</a>
@@ -356,7 +356,10 @@ a:hover{
 				<a href="##"><span class="mh-ui-btn-txt" data-html="更多照片&gt;&gt;">更多照片&gt;&gt;</span></a>		
 			</div>
 		</div>
+	{/foreach}
 	</div>
+	
+{/foreach}
 	<div id="footer">
 		<a class="scrollUp">返回顶部</a>
 		<p>Copyright&copy;Meicry</p>

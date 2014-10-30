@@ -1,35 +1,91 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-use Home\Model\ItemModel;
+use Home\Model\ThemeModel;
+use Home\Model\TemplateModel;
+use Home\Model\ImageModel;
 class IndexController extends Controller {
     public function index(){
-	    $ret = $this->getImageByTheme(1); 
+	    $ret = $this->getAllImage();
+	    $all_theme = $this->getAllTheme();
+		$all_template =$this->getAllTemplate();
+		$this->assign('templates',   $all_template);
+		$this->assign('themes',   $all_theme);
 		$this->assign('images',   $ret);
 		$this->display();
     }
-    
-    private  function getImageByTheme($theme){
-    	$Obj = new ItemModel();
-    	$ret =$Obj->getItemByTheme($theme);
+    private  function getAllTheme(){
+    	$Obj = new ThemeModel();
+    	$res =$Obj->getAllTheme();
+    	$ret = array();
+    	foreach ($res as $value) {
+    		$ret[$value['id']] = $value;
+    	}
     	return $ret;
     }
+    private  function getAllTemplate(){
+    	$Obj = new TemplateModel();
+    	$res =$Obj->getAllTemplate();
+    	$ret = array();
+    	foreach ($res as $value) {
+    		$ret[$value['id']] = $value;
+    	}
+    	return $ret;
+    }
+   
+    # 拼凑所有的数据
+    public function getAllImage() {
+    	# 找到所有主题id
+    	#getAllImageByThemeId()
+    	$allTheme = $this->getAllTheme();
+    	$res = array();
+    	foreach ($allTheme as $values) {
+    		$themeId = $values['id'];
+    		$res[$themeId]  = $this->getAllImageByThemeId($themeId);
+    	}
+    	
+    	return $res;
+    }
+    
+    #  拼凑单个数据结构
+    public function getAllImageByThemeId($themeId) {
+		$res = array ();
+		$tmps = array ();
+		$templateModel = new TemplateModel ();
+		$imageModel = new ImageModel ();
+		$tmps = $templateModel->getTemplateByThemeId ( $themeId );
+		
+		$tmplateArr = array ();
+		foreach ( $tmps as $value ) {
+			$images = array ();
+			$templateId = $value ['id'];
+			$images = $imageModel->getImageByTemplateId ( $templateId );
+			
+			$tmplateArr [$templateId] = $images;
+		}
+    	
+    	
+    	return $tmplateArr;
+    }
+    	
+    	
     private function getImageByUserId($userId){
-    	$Obj = new ItemModel();
+    	$Obj = new ImageModel();
     	$ret =$Obj->getItemByUserId($userId);
     	return $ret;
     }
+    	
     //安卓
     public function getImageByTheme_encode(){
     	$theme = $_REQUEST['theme'];
-    	$Obj = new ItemModel();
+    	$Obj = new ImageModel();
     	$ret =$Obj->getItemByTheme($theme);
     	echo json_encode($ret);
     }
     //安卓
     public function getImageByUserId_encode(){
     	$userId = $_REQUEST['userId'];
-    	$Obj = new ItemModel();
+    	$Obj = new ImageModel();
     	$ret =$Obj->getItemByUserId($userId);
     	echo json_encode($ret);
     }
@@ -59,6 +115,9 @@ class IndexController extends Controller {
     		$this->success('上传成功！');
     	}
     }
+    
+   
+    
 }
 
 

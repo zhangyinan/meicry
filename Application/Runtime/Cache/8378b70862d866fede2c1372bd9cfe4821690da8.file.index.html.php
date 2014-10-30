@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.6, created on 2014-10-29 11:02:05
+<?php /* Smarty version Smarty-3.1.6, created on 2014-10-30 14:50:34
          compiled from "./Application/Home/View\Index\index.html" */ ?>
 <?php /*%%SmartyHeaderCode:13356545045b9f114d7-90826561%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8378b70862d866fede2c1372bd9cfe4821690da8' => 
     array (
       0 => './Application/Home/View\\Index\\index.html',
-      1 => 1414551679,
+      1 => 1414651830,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'unifunc' => 'content_545045ba3b727',
   'variables' => 
   array (
+    'themes' => 0,
+    'theme' => 0,
     'images' => 0,
+    'themeId' => 0,
+    'templateId' => 0,
+    'templates' => 0,
+    'template' => 0,
     'image' => 0,
   ),
   'has_nocache_code' => false,
@@ -338,32 +344,54 @@ a:hover{
 	</div>
 	
 	<nav class="sub-nav bd">
-		<a href="##" class="sub-nav-item sub-nav-active">主题1</a>
-		<a href="##" class="sub-nav-item">主题2</a>
-		<a href="##" class="sub-nav-item">主题3</a>
-		<a href="##" class="sub-nav-item">主题4</a>
-		<a href="##" class="sub-nav-item">主题5</a>
+	 <?php  $_smarty_tpl->tpl_vars['theme'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['theme']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['themes']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['theme']->key => $_smarty_tpl->tpl_vars['theme']->value){
+$_smarty_tpl->tpl_vars['theme']->_loop = true;
+?>
+		<a href="##" class="sub-nav-item  <?php if ($_smarty_tpl->tpl_vars['theme']->value['id']==1){?>sub-nav-active<?php }?>" data-target="<?php echo $_smarty_tpl->tpl_vars['theme']->value['id'];?>
+" ><?php echo $_smarty_tpl->tpl_vars['theme']->value['name'];?>
+</a>
+		
+	<?php } ?>	
 	</nav>
-
-	<div class="tpl-list-wrap bd">
-		<h3>蒙版1</h3>
+	<?php  $_smarty_tpl->tpl_vars['theme'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['theme']->_loop = false;
+ $_smarty_tpl->tpl_vars['themeId'] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['images']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['theme']->key => $_smarty_tpl->tpl_vars['theme']->value){
+$_smarty_tpl->tpl_vars['theme']->_loop = true;
+ $_smarty_tpl->tpl_vars['themeId']->value = $_smarty_tpl->tpl_vars['theme']->key;
+?>
+	<div class="tpl-list-wrap bd" data-target="<?php echo $_smarty_tpl->tpl_vars['themeId']->value;?>
+" <?php if ($_smarty_tpl->tpl_vars['themeId']->value==1){?>style="display: block;"<?php }else{ ?>style="display: none;"<?php }?>>
+		<?php  $_smarty_tpl->tpl_vars['template'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['template']->_loop = false;
+ $_smarty_tpl->tpl_vars['templateId'] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['theme']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['template']->key => $_smarty_tpl->tpl_vars['template']->value){
+$_smarty_tpl->tpl_vars['template']->_loop = true;
+ $_smarty_tpl->tpl_vars['templateId']->value = $_smarty_tpl->tpl_vars['template']->key;
+?>
+		<h3><?php echo $_smarty_tpl->tpl_vars['templates']->value[$_smarty_tpl->tpl_vars['templateId']->value]['name'];?>
+</h3>
 		<div class="tpl-list-cont">
 			<div class="first-view gclearfix">
 				<div class="tpl">
 					<a href="##" target="_blank" class="img-wrap">
-						<img src="http://img.ui.cn/data/file/9/7/1/120179.png" width="320" height="320">
+						<img src="../Public/img/template/<?php echo $_smarty_tpl->tpl_vars['templates']->value[$_smarty_tpl->tpl_vars['templateId']->value]['logo'];?>
+" width="320" height="320">
 					</a>
-					<p class="tpl-des">我们特别好特别好</p>
+					<p class="tpl-des"><?php echo $_smarty_tpl->tpl_vars['templates']->value[$_smarty_tpl->tpl_vars['templateId']->value]['name'];?>
+</p>
 				</div>
 				<ul class="photo-list">
 				 <?php  $_smarty_tpl->tpl_vars['image'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['image']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['images']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+ $_from = $_smarty_tpl->tpl_vars['template']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['image']->key => $_smarty_tpl->tpl_vars['image']->value){
 $_smarty_tpl->tpl_vars['image']->_loop = true;
 ?>
 					<li class="photo-item">
 						<a href="###" target="_blank">
-							<img src="./Public/img/uploads/<?php echo $_smarty_tpl->tpl_vars['image']->value['image_url'];?>
+							<img src="../Public/img/uploads/<?php echo $_smarty_tpl->tpl_vars['image']->value['image_url'];?>
 " width="164" height="164">
 							<span class="tit"><?php echo $_smarty_tpl->tpl_vars['image']->value['image_desc'];?>
 </span>
@@ -381,7 +409,7 @@ $_smarty_tpl->tpl_vars['image']->_loop = true;
 ?>
 				<li class="photo-item">
 					<a href="###" target="_blank">
-						<img src="./Public/img/uploads/<?php echo $_smarty_tpl->tpl_vars['image']->value['image_url'];?>
+						<img src="../Public/img/uploads/<?php echo $_smarty_tpl->tpl_vars['image']->value['image_url'];?>
 " width="164" height="164">
 						<span class="tit"><?php echo $_smarty_tpl->tpl_vars['image']->value['image_desc'];?>
 </span>
@@ -394,7 +422,10 @@ $_smarty_tpl->tpl_vars['image']->_loop = true;
 				<a href="##"><span class="mh-ui-btn-txt" data-html="更多照片&gt;&gt;">更多照片&gt;&gt;</span></a>		
 			</div>
 		</div>
+	<?php } ?>
 	</div>
+	
+<?php } ?>
 	<div id="footer">
 		<a class="scrollUp">返回顶部</a>
 		<p>Copyright&copy;Meicry</p>

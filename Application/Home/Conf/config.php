@@ -7,10 +7,10 @@ return array(
 			),
 		# MySQL config
 		'DB_TYPE' 			  => 'mysql',
-		'DB_HOST' 			  => '127.0.0.1',
+		'DB_HOST' 			  => '123.57.46.129',
 		'DB_NAME'			  => 'meicry',
-		'DB_USER'			  => 'root',
-		'DB_PWD'  			  => '',
+		'DB_USER'			  => 'zhangyinan',
+		'DB_PWD'  			  => 'zhangyinan123456',
 		'DB_PORT'             => '3306',
 		'DB_PREFIX'           => '',
 		'DB_SQL_LOG'          => false,
