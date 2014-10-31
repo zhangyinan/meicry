@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.6, created on 2014-10-30 14:50:34
+<?php /* Smarty version Smarty-3.1.6, created on 2014-10-31 14:18:02
          compiled from "./Application/Home/View\Index\index.html" */ ?>
 <?php /*%%SmartyHeaderCode:13356545045b9f114d7-90826561%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8378b70862d866fede2c1372bd9cfe4821690da8' => 
     array (
       0 => './Application/Home/View\\Index\\index.html',
-      1 => 1414651830,
+      1 => 1414736280,
       2 => 'file',
     ),
   ),
@@ -27,6 +27,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'templates' => 0,
     'template' => 0,
     'image' => 0,
+    'user_info' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -393,7 +394,7 @@ $_smarty_tpl->tpl_vars['image']->_loop = true;
 						<a href="###" target="_blank">
 							<img src="../Public/img/uploads/<?php echo $_smarty_tpl->tpl_vars['image']->value['image_url'];?>
 " width="164" height="164">
-							<span class="tit"><?php echo $_smarty_tpl->tpl_vars['image']->value['image_desc'];?>
+							<span class="tit"><?php echo $_smarty_tpl->tpl_vars['user_info']->value[$_smarty_tpl->tpl_vars['image']->value['user_id']]['name'];?>
 </span>
 							<span class="cover-all"></span>	
 						</a>
@@ -409,7 +410,7 @@ $_smarty_tpl->tpl_vars['image']->_loop = true;
 ?>
 				<li class="photo-item">
 					<a href="###" target="_blank">
-						<img src="../Public/img/uploads/<?php echo $_smarty_tpl->tpl_vars['image']->value['image_url'];?>
+						<img src="__ROOT__/Public/img/uploads/<?php echo $_smarty_tpl->tpl_vars['image']->value['image_url'];?>
 " width="164" height="164">
 						<span class="tit"><?php echo $_smarty_tpl->tpl_vars['image']->value['image_desc'];?>
 </span>

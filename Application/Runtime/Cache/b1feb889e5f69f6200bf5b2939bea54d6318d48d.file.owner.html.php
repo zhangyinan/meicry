@@ -1,4 +1,31 @@
-<!DOCTYPE html><!--[if lt IE 7 ]><html class="ie6"><![endif]--><!--[if IE 7 ]><html class="ie7"><![endif]--><!--[if IE 8 ]><html class="ie8"><![endif]--><!--[if IE 9 ]><html class="ie9"><![endif]--><!--[if (gt IE 9)|!(IE)]><!--><html class=""><!--<![endif]-->
+<?php /* Smarty version Smarty-3.1.6, created on 2014-10-31 13:39:43
+         compiled from "./Application/Home/View\Index\owner.html" */ ?>
+<?php /*%%SmartyHeaderCode:1151254531d285fa223-31093624%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'b1feb889e5f69f6200bf5b2939bea54d6318d48d' => 
+    array (
+      0 => './Application/Home/View\\Index\\owner.html',
+      1 => 1414733975,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '1151254531d285fa223-31093624',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.6',
+  'unifunc' => 'content_54531d287f5ff',
+  'variables' => 
+  array (
+    'user_info' => 0,
+    'image_info' => 0,
+    'value' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_54531d287f5ff')) {function content_54531d287f5ff($_smarty_tpl) {?><!DOCTYPE html><!--[if lt IE 7 ]><html class="ie6"><![endif]--><!--[if IE 7 ]><html class="ie7"><![endif]--><!--[if IE 8 ]><html class="ie8"><![endif]--><!--[if IE 9 ]><html class="ie9"><![endif]--><!--[if (gt IE 9)|!(IE)]><!--><html class=""><!--<![endif]-->
 <head>
 <meta charset="utf-8">
 <title>个人页面</title>
@@ -146,7 +173,8 @@
 <div id="owner">
 	<div class="aside">
 		<div class="nav">
-			<img src="../../Public/img/user/{$user_info.icon}" />
+			<img src="../../Public/img/user/<?php echo $_smarty_tpl->tpl_vars['user_info']->value['icon'];?>
+" />
 		</div>
 		<div class="nav">
 			赞过的照片
@@ -160,11 +188,16 @@
 	</div>
 	<a href="##home" class="back">返回首页</a>
 	<div class="top owner-bd">
-		<h1>{$user_info.name}</h1>
+		<h1><?php echo $_smarty_tpl->tpl_vars['user_info']->value['name'];?>
+</h1>
 	</div>
 	<div class="doc owner-bd">
 		<ol>
-		{foreach $image_info as $value}
+		<?php  $_smarty_tpl->tpl_vars['value'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['value']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['image_info']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['value']->key => $_smarty_tpl->tpl_vars['value']->value){
+$_smarty_tpl->tpl_vars['value']->_loop = true;
+?>
 			<li class="post-item gclearfix">
 				<div class="post-info">
 					<div class="nav">点赞</div>
@@ -172,19 +205,23 @@
 				</div>
 				<div class="post-bd">
 					<a href="####" target="_blank" class="img-wrap">
-						<img src="../Public/img/uploads/{$value['imageInfo']['image_url']}" width="556" class="js-img"/>
+						<img src="../Public/img/uploads/<?php echo $_smarty_tpl->tpl_vars['value']->value['imageInfo']['image_url'];?>
+" width="556" class="js-img"/>
 					</a>
 					<p class="gclearfix">
-						<span class="theme-info photo-tips">{$value['themeInfo']['name']}</span>
-						<span class="photo-tips">{$value['imageInfo']['updated_at']}</span>
-						<span><a href="##share" class="photo-share photo-tips" data-id="{$value['imageInfo']['id']}"> 删除</a></span>
+						<span class="theme-info photo-tips"><?php echo $_smarty_tpl->tpl_vars['value']->value['themeInfo']['name'];?>
+</span>
+						<span class="photo-tips"><?php echo $_smarty_tpl->tpl_vars['value']->value['imageInfo']['updated_at'];?>
+</span>
+						<span><a href="##share" class="photo-share photo-tips" data-id="<?php echo $_smarty_tpl->tpl_vars['value']->value['imageInfo']['id'];?>
+"> 删除</a></span>
 					</p>
 				</div>
 				<div class="share-cont">
 					
 				</div>
 			</li>
-		{/foreach}
+		<?php } ?>
 		</ol>
 		<div class="pager">
 		</div>
@@ -232,4 +269,4 @@ _loader.use('jquery, scrollUp',function(){
 	});
 });
 </script>
-</html>
+</html><?php }} ?>

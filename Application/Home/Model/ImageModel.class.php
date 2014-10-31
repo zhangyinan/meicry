@@ -9,7 +9,7 @@ class ImageModel extends Model {
 	} */
 	
 	public function getItemByUserId($UserId){
-		$ret=$this->where("user_id='$UserId'")->field('image_url,image_desc,id,template')->select();
+		$ret=$this->where("user_id='$UserId'")->select();
 		return  $ret;
 	}
 	

@@ -334,7 +334,7 @@ a:hover{
 					<li class="photo-item">
 						<a href="###" target="_blank">
 							<img src="../Public/img/uploads/{$image.image_url}" width="164" height="164">
-							<span class="tit">{$image.image_desc}</span>
+							<span class="tit">{$user_info[$image.user_id]['name']}</span>
 							<span class="cover-all"></span>	
 						</a>
 					</li>
@@ -345,7 +345,7 @@ a:hover{
 			 	{foreach $images as $image}
 				<li class="photo-item">
 					<a href="###" target="_blank">
-						<img src="../Public/img/uploads/{$image.image_url}" width="164" height="164">
+						<img src="__ROOT__/Public/img/uploads/{$image.image_url}" width="164" height="164">
 						<span class="tit">{$image.image_desc}</span>
 						<span class="cover-all"></span>	
 					</a>

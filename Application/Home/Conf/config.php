@@ -19,9 +19,14 @@ return array(
 		'DB_SQL_BUILD_CACHE'  => false,
 		'DB_SQL_BUILD_LENGTH' => 20,
 		'LOAD_EXT_FILE'        => 'extend',     # extend.php common functions auto load
+		'TMPL_PARSE_STRING'    =>array(
+				#'__PUBLIC__'    =>  __ROOT__.'/Public',// 站点公共目录
+		),
+		
+		
 
 		'DEFAULT_MODULE'     => 'Index', //默认模块
-		'URL_MODEL'          => '2', //URL模式
+		'URL_MODEL'          => '0', //URL模式
 		#'URL_MODEL'            => 1,            #PATHINFO模式
 		'URL_CASE_INSENSITIVE' => false,        # URL up/down case
 		'URL_PATHINFO_DEPR'    => '/',

@@ -8,16 +8,27 @@ use Home\Model\LikeModel;
 use Home\Model\UserModel;
 class IndexController extends Controller {
     public function index(){
+    	
+    	$all_user= $this->getAllUser();
 	    $ret = $this->getAllImage();
 	    $all_theme = $this->getAllTheme();
 		$all_template =$this->getAllTemplate();
-		
 		$_SESSION["user_id"] = 1;
 		
+		$this->assign('user_info',   $all_user);
 		$this->assign('templates',   $all_template);
 		$this->assign('themes',   $all_theme);
 		$this->assign('images',   $ret);
 		$this->display();
+    }
+    private  function getAllUser(){
+    	$Obj = new UserModel();
+    	$res =$Obj->getAllUser();
+    	$ret = array();
+    	foreach ($res as $value) {
+    		$ret[$value['id']] = $value;
+    	}
+    	return $ret;
     }
     private  function getAllTheme(){
     	$Obj = new ThemeModel();
@@ -72,7 +83,8 @@ class IndexController extends Controller {
     	
     	return $tmplateArr;
     }
-    	
+    
+    #删除图片	
     public function delImageById(){
     	$imageId = $_REQUEST['imageId'];
     	$obj = new ImageModel();
@@ -81,13 +93,16 @@ class IndexController extends Controller {
     	$obj1->delLikeByImageId($imageId);
     	 
     }	
-    
+    #个人主页
     public  function owner(){
-    	$userId = $_SESSION["user_id"];
+    	$userId = $_REQUEST["user_id"];
     	$obj = new ImageModel();
     	$ret = $obj->getImageByUserId($userId);
-    	dump($ret);
-    	exit;
+    	$obj1 = new UserModel();
+    	$res = $obj1->getUserInfoById($userId);
+//     	dump($ret);
+//     	exit;
+    	$this->assign("user_info",$res);
     	$this->assign("image_info",$ret);
     	$this->display();
     }
