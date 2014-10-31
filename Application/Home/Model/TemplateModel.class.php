@@ -9,6 +9,12 @@ class TemplateModel extends Model {
 		$ret=$this->where("theme='$themeId'")->field('id')->select();
 		return  $ret;
 	}
+	
+	#根据模板的id找到所有主题的id
+	public function getThemeByTemplateId($temId){
+		$ret=$this->find($temId);
+		return  $ret;
+	}
 	#获取所有模板信息
 	public function getAllTemplate(){
 		$ret=$this->select();

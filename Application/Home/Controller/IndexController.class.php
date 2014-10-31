@@ -4,11 +4,16 @@ use Think\Controller;
 use Home\Model\ThemeModel;
 use Home\Model\TemplateModel;
 use Home\Model\ImageModel;
+use Home\Model\LikeModel;
+use Home\Model\UserModel;
 class IndexController extends Controller {
     public function index(){
 	    $ret = $this->getAllImage();
 	    $all_theme = $this->getAllTheme();
 		$all_template =$this->getAllTemplate();
+		
+		$_SESSION["user_id"] = 1;
+		
 		$this->assign('templates',   $all_template);
 		$this->assign('themes',   $all_theme);
 		$this->assign('images',   $ret);
@@ -68,7 +73,56 @@ class IndexController extends Controller {
     	return $tmplateArr;
     }
     	
+    public function delImageById(){
+    	$imageId = $_REQUEST['imageId'];
+    	$obj = new ImageModel();
+    	$obj1 = new LikeModel();
+    	$obj->delImageById($imageId);
+    	$obj1->delLikeByImageId($imageId);
+    	 
+    }	
+    
+    public  function owner(){
+    	$userId = $_SESSION["user_id"];
+    	$obj = new ImageModel();
+    	$ret = $obj->getImageByUserId($userId);
+    	dump($ret);
+    	exit;
+    	$this->assign("image_info",$ret);
+    	$this->display();
+    }
+    
+    #找我爱过的们
+    public function getImageLiked(){
+    	$userId = $_SESSION["user_id"];
+    	$obj = new ImageModel();
+    	$obj1 = new LikeModel();
+    	$obj2 = new UserModel();
+    	$obj3 = new TemplateModel();
+    	$obj4 = new ThemeModel();
+    	$res = $obj1->getImageLiked($userId);
     	
+    	$allLiked = array();
+    	foreach ($res as $value){
+    		$image_id = $value['image_id'];
+    		$imageInfo =  $obj->getImageInfoById($image_id);
+    		$user_id = $value['user_id'];
+    		$userInfo = $obj2 ->getUserInfoById($user_id);
+    		$allLikedTmp = array();
+    		$tmpId = $imageInfo['template'];
+    		$allLikedTmp["imageInfo"] = $imageInfo;
+    		$allLikedTmp["userInfo"] = $userInfo;
+    		$templateInfo = $obj3->getThemeByTemplateId($tmpId);
+    		$themeId = $templateInfo['theme'];
+    		$allLikedTmp["themeInfo"] =$obj4->getThemeInfoByThemeId($themeId);
+    		$allLiked[] = $allLikedTmp;
+    	}
+    	return $allLiked;
+    }
+    
+    
+    
+    
     private function getImageByUserId($userId){
     	$Obj = new ImageModel();
     	$ret =$Obj->getItemByUserId($userId);
@@ -89,6 +143,7 @@ class IndexController extends Controller {
     	$ret =$Obj->getItemByUserId($userId);
     	echo json_encode($ret);
     }
+    
     public function upload(){
     	$user_id = $_REQUEST['user_id'];
     	$theme = $_REQUEST['theme'];

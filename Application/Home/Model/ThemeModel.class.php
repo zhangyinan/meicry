@@ -8,5 +8,9 @@ class ThemeModel extends Model {
 		$ret=$this->select();
 		return  $ret;
 	}
-	
+	#根据主题的id找到主题信息
+	public function getThemeInfoByThemeId($themeId){
+		$ret=$this->find($themeId);
+		return  $ret;
+	}
 }

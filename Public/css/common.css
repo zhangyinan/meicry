@@ -1,0 +1,80 @@
+body{
+	text-align: center;
+	font-family: 'Microsoft Yahei';
+}
+.gclearfix:after{
+	clear: both;
+	content: '';
+	display: block;
+	height: 0;
+	visibility: hidden;
+	*zoom: 1;
+}
+.bd{
+	margin: 0 auto;
+	width: 928px;
+}
+header{
+	width: 100%;
+	height: 82px;
+	margin-bottom: 30px;
+	background: #000;
+	color: #fff;
+}
+a{
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: none;
+}
+#footer p{
+	color: #333;
+}
+.logo{
+	float: left;
+	position: relative;
+	width: 220px;
+	height: 44px;
+	margin-top: 18px;
+}
+.title{
+	position: relative;
+	color: #fff;
+	font-size: 42px;
+}
+.title:active{
+	left: 1px;
+	top: 1px;
+}
+.main-nav{
+	float: left;
+	margin-top: 22px;
+	height: 50px;
+	line-height: 50px;
+}
+.main-nav a{
+	display: inline-block;
+	font-size: 16px;
+	color: #999;
+	margin: 0 0 0 30px;
+}
+.main-nav a:hover,
+.main-nav a.nav-active{
+	color: #fff;
+}
+/* 返回顶部 */
+.scrollUp{
+	position: fixed;
+	bottom: 50px;
+	right: 50px;
+	display: none;
+	width: 48px;
+	height: 48px;
+	text-indent: -9999px;
+	cursor: pointer;
+	z-index: 10;
+	background: url('http://p5.qhimg.com/t0144c584a2fad3d11d.png') no-repeat 0 0;
+}
+.scrollUp:hover{
+	background-position: 0 -50px;
+}
